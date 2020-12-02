@@ -5,7 +5,7 @@ use structopt::StructOpt;
 use crate::util;
 
 #[derive(Debug, StructOpt)]
-pub struct Day1Args {
+pub struct Day1A {
     /// The input file to read
     #[structopt(default_value = "input/day1a")]
     input: PathBuf,
@@ -15,8 +15,8 @@ pub struct Day1Args {
 }
 
 /// This problem is essentially Two Sum
-pub fn day1(args: Day1Args) -> anyhow::Result<()> {
-    let Day1Args {input, target} = args;
+pub fn day1a(args: Day1A) -> anyhow::Result<()> {
+    let Day1A {input, target} = args;
 
     let mut seen = HashSet::new();
 

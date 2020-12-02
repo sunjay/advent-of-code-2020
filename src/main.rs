@@ -6,7 +6,8 @@ use structopt::StructOpt;
 #[derive(StructOpt)]
 #[structopt(about = "advent of code 2020 solutions")]
 enum AdventOfCode {
-    Day1(day1::Day1Args),
+    #[structopt(name = "day1a")]
+    Day1A(day1::Day1A),
 }
 
 fn main() -> anyhow::Result<()> {
@@ -14,6 +15,6 @@ fn main() -> anyhow::Result<()> {
 
     use AdventOfCode::*;
     match opts {
-        Day1(args) => day1::day1(args),
+        Day1A(args) => day1::day1a(args),
     }
 }
