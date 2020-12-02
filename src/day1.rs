@@ -13,8 +13,7 @@ pub struct Day1Args {
 pub fn day1(args: Day1Args) -> anyhow::Result<()> {
     let Day1Args {input} = args;
 
-    let expenses: Vec<i64> = util::read_lines(&input)?;
-    dbg!(expenses);
+    let expenses: Vec<i64> = util::read_lines(input)?.collect::<anyhow::Result<Vec<_>>>()?;
 
     Ok(())
 }
