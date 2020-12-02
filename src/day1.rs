@@ -7,7 +7,7 @@ use crate::util;
 #[derive(Debug, StructOpt)]
 pub struct Day1A {
     /// The input file to read
-    #[structopt(default_value = "input/day1a")]
+    #[structopt(default_value = "input/day1")]
     input: PathBuf,
     /// The target value that two expenses must sum to
     #[structopt(default_value = "2020")]
