@@ -1,4 +1,4 @@
-use std::{collections::HashSet, path::PathBuf, str::FromStr};
+use std::{path::PathBuf, str::FromStr};
 
 use structopt::StructOpt;
 use once_cell::sync::Lazy;
@@ -55,6 +55,37 @@ pub fn day2a(args: Day2A) -> anyhow::Result<()> {
             .count();
 
         if target_count >= line.min && target_count <= line.max {
+            valid += 1;
+        }
+
+        total += 1;
+    }
+
+    println!("{} valid / {} total", valid, total);
+
+    Ok(())
+}
+
+#[derive(Debug, StructOpt)]
+pub struct Day2B {
+    /// The input file to read
+    #[structopt(default_value = "input/day2")]
+    input: PathBuf,
+}
+
+pub fn day2b(args: Day2B) -> anyhow::Result<()> {
+    let Day2B {input} = args;
+
+    let mut valid = 0;
+    let mut total = 0;
+
+    for line in util::read_lines(input)? {
+        let line: InputLine = line?;
+
+        let index1 = line.min - 1;
+        let index2 = line.max - 1;
+
+        if (line.password[index1] == line.target_byte) ^ (line.password[index2] == line.target_byte) {
             valid += 1;
         }
 
