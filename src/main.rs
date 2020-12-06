@@ -3,6 +3,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 use structopt::StructOpt;
 
@@ -25,6 +26,8 @@ enum AdventOfCode {
     Day4A(day4::Day4A),
     #[structopt(name = "day4b")]
     Day4B(day4::Day4B),
+    #[structopt(name = "day5a")]
+    Day5A(day5::Day5A),
 }
 
 fn main() -> anyhow::Result<()> {
@@ -40,5 +43,6 @@ fn main() -> anyhow::Result<()> {
         Day3B(args) => day3::day3b(args),
         Day4A(args) => day4::day4a(args),
         Day4B(args) => day4::day4b(args),
+        Day5A(args) => day5::day5a(args),
     }
 }
