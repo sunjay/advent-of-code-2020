@@ -2,6 +2,7 @@ use std::{fmt, path::PathBuf, str::FromStr};
 
 use structopt::StructOpt;
 use anyhow::{Context, ensure};
+use colored::Colorize;
 
 use crate::util;
 
@@ -157,6 +158,48 @@ pub fn day5a(args: Day5A) -> anyhow::Result<()> {
     }
 
     println!("Maximum ID: {}", max_id);
+
+    Ok(())
+}
+
+#[derive(Debug, StructOpt)]
+pub struct Day5B {
+    /// The input file to read
+    #[structopt(default_value = "input/day5")]
+    input: PathBuf,
+}
+
+pub fn day5b(args: Day5B) -> anyhow::Result<()> {
+    let Day5B {input} = args;
+
+    const TOTAL_SEATS: usize = ROWS * SEATS_PER_ROW;
+
+    let mut filled_seats = vec![false; TOTAL_SEATS];
+
+    for line in util::read_lines(input)? {
+        let spec: SeatSpec = line?;
+        let seat = Seat::from_spec(&spec)
+            .with_context(|| format!("reducing spec `{}`", spec))?;
+
+            filled_seats[seat.id()] = true;
+    }
+
+    for row in 0..ROWS {
+        for col in 0..SEATS_PER_ROW {
+            let seat = Seat {row, col};
+            let id = seat.id();
+
+            let id_str = format!("{:04}", id);
+            let id_str = if filled_seats[id] {
+                id_str.cyan()
+            } else {
+                id_str.bold().bright_green()
+            };
+            print!(" {}", id_str);
+        }
+
+        println!();
+    }
 
     Ok(())
 }
