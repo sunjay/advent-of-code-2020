@@ -33,6 +33,8 @@ enum AdventOfCode {
     Day5B(day5::Day5B),
     #[structopt(name = "day6a")]
     Day6A(day6::Day6A),
+    #[structopt(name = "day6b")]
+    Day6B(day6::Day6B),
 }
 
 fn main() -> anyhow::Result<()> {
@@ -51,5 +53,6 @@ fn main() -> anyhow::Result<()> {
         Day5A(args) => day5::day5a(args),
         Day5B(args) => day5::day5b(args),
         Day6A(args) => day6::day6a(args),
+        Day6B(args) => day6::day6b(args),
     }
 }
